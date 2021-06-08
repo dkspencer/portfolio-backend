@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  portfolio:
+    container_name: portfolio
+    build: .
+    command: bash -c "python manage.py runserver 0.0.0.0:8080"
+
+    environment:
+      DJANGO_DEBUG: 'True'
+      DATABASE_PASS: "root"
+      DATABASE_USER: "root"
+      DATABASE_NAME: "portfolio"
+      DATABASE_HOST: "postgres"
+      HASHID_FIELD_SALT: "${HASHID_FIELD_SALT}"
+      SECRET_KEY: "${SECRET_KEY}"
+    volumes:
+      - .:/home/portfolio
+    ports:
+      - "8081:8080"
+    networks:
+      - portfolio_network
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    image: "postgres:13.3"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: portfolio
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    networks:
+      - portfolio_network
+
+volumes:
+  postgres_volume:
+
+networks:
+  portfolio_network:
+    external: true
