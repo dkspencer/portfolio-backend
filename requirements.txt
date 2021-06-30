@@ -1,0 +1,17 @@
+Django==3.2.3
+djangorestframework==3.12.4
+django-jazzmin==2.2.7
+django-health-check==3.12.1
+django-filter==2.4.0
+django-hint==0.1.5
+django-phonenumber-field==4.0.0
+gunicorn==20.0.4
+mysql-server-has-gone-away==2.0.0
+drf-spectacular==0.15.1
+psycopg2==2.8.6
+phonenumbers==8.12.7
+django-hashid-field==3.2.1
+drf-spectacular==0.15.1
+whitenoise==5.2.0
+drf-pretty-exception-handler==0.1.2
+django-cors-headers==3.7.0 
