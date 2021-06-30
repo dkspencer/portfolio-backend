@@ -1,0 +1,38 @@
+<style>
+  pre.s-code-block {
+    font-size: 13px;
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;
+    line-height: 1.30769231;
+    background-color: #545353;
+    border-radius: 5px;
+    margin: 0;
+    padding-top: 0;
+    overflow: auto;
+    scrollbar-color: #c5c5c5 transparent;
+  }
+</style>
+
+# Introduction
+<p>
+  This Portfolio API is built on HTTPS and is RESTful. The Portfolio API accepts and returns JSON in the request body.
+  <br><br>
+  You can use any HTTPS/REST libraries with a variety of programming languages.
+</p>
+
+
+# Errors
+<p>
+  The API uses standard HTTP status codes to indicate the success or failure of an API call. The body of the response will be JSON and follow this format (with a different
+  "status_code" and "non_field_errors" ):
+</p>
+
+<pre class="s-code-block"><code>
+  {
+    "status_code":400,
+    "errors": {
+      "non_field_errors": [
+        "Invalid input."
+      ]
+    }
+  }
+</code></pre>
