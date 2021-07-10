@@ -19,7 +19,7 @@ from portfolio.code.utils.exceptions import ExceptionSerializer
     decorator=extend_schema(
         operation_id='List Users',
         tags=['User'],
-        responses={'200': OpenAPI(response=SkillSerializer,
+        responses={'200': OpenAPI(response=UserSerializer,
                                   description='Request successful'),
                    '401': OpenAPI(response=ExceptionSerializer,
                                   description='Unauthorized access, invalid '
@@ -29,7 +29,7 @@ from portfolio.code.utils.exceptions import ExceptionSerializer
     decorator=extend_schema(
         operation_id='Retrieve User',
         tags=['User'],
-        responses={'200': OpenAPI(response=SkillSerializer,
+        responses={'200': OpenAPI(response=UserSerializer,
                                   description='Request successful'),
                    '401': OpenAPI(response=ExceptionSerializer,
                                   description='Unauthorized access, invalid '
@@ -52,7 +52,7 @@ class UserViewSet(viewsets.ModelViewSet):
     decorator=extend_schema(
         operation_id='List Education',
         tags=['Education'],
-        responses={'200': OpenAPI(response=SkillSerializer,
+        responses={'200': OpenAPI(response=EducationSerializer,
                                   description='Request successful'),
                    '401': OpenAPI(response=ExceptionSerializer,
                                   description='Unauthorized access, invalid '
@@ -62,7 +62,7 @@ class UserViewSet(viewsets.ModelViewSet):
     decorator=extend_schema(
         operation_id='Retrieve Education',
         tags=['Education'],
-        responses={'200': OpenAPI(response=SkillSerializer,
+        responses={'200': OpenAPI(response=EducationSerializer,
                                   description='Request successful'),
                    '401': OpenAPI(response=ExceptionSerializer,
                                   description='Unauthorized access, invalid '
@@ -85,7 +85,7 @@ class EducationViewSet(viewsets.ModelViewSet):
     decorator=extend_schema(
         operation_id='List Experience',
         tags=['Experience'],
-        responses={'200': OpenAPI(response=SkillSerializer,
+        responses={'200': OpenAPI(response=ExperienceSerializer,
                                   description='Request successful'),
                    '401': OpenAPI(response=ExceptionSerializer,
                                   description='Unauthorized access, invalid '
@@ -95,7 +95,7 @@ class EducationViewSet(viewsets.ModelViewSet):
     decorator=extend_schema(
         operation_id='Retrieve Experience',
         tags=['Experience'],
-        responses={'200': OpenAPI(response=SkillSerializer,
+        responses={'200': OpenAPI(response=ExperienceSerializer,
                                   description='Request successful'),
                    '401': OpenAPI(response=ExceptionSerializer,
                                   description='Unauthorized access, invalid '

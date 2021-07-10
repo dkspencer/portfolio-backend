@@ -197,7 +197,7 @@ class Link(models.Model):
 
     user = models.ForeignKey(CustomUser,
                              help_text='User links',
-                             related_name='link',
+                             related_name='links',
                              on_delete=models.CASCADE)
 
     name = models.CharField(max_length=100,
