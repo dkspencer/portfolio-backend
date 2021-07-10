@@ -61,9 +61,9 @@ class ProfileSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
 
     profile = ProfileSerializer(help_text='User personal information')
-    link = LinkSerializer(many=True, help_text='User links')
+    links = LinkSerializer(many=True, help_text='User links')
 
     class Meta:
         model = CustomUser
-        fields = ['profile', 'id', 'link']
+        fields = ['profile', 'id', 'links']
         ref_name = None
