@@ -200,7 +200,7 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'DanielleSpencer | Portfolio',
+    'TITLE': 'Portfolio API',
     'DESCRIPTION': open("templates/documentation.html", "r").read(),
     'VERSION': '1.0.0',
     'CONTACT': {
