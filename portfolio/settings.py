@@ -19,7 +19,7 @@ if DEBUG:
     ALLOWED_HOSTS = []
 
 else:
-    ALLOWED_HOSTS = ['daniellespencer.dev']
+    ALLOWED_HOSTS = ['api.daniellespencer.dev']
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS = [
@@ -81,12 +81,12 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': os.environ['DATABASE_NAME'],
         'USER': os.environ['DATABASE_USER'],
         'PASSWORD': os.environ['DATABASE_PASS'],
         'HOST': os.environ['DATABASE_HOST'],
-        'PORT': 5432,
+        'PORT': 3306,
     }
 
 }
