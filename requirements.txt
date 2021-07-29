@@ -15,3 +15,5 @@ drf-spectacular==0.15.1
 whitenoise==5.2.0
 drf-pretty-exception-handler==0.1.2
 django-cors-headers==3.7.0 
+django-mysql==3.8.1
+mysqlclient==2.0.1
