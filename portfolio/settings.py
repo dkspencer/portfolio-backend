@@ -17,10 +17,16 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 if DEBUG:
     ALLOWED_HOSTS = []
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:8080"
+    ]
 
 else:
     ALLOWED_HOSTS = ['api.daniellespencer.dev']
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    CORS_ALLOWED_ORIGINS = [
+        "https://daniellespencer.dev"
+    ]
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -237,7 +243,3 @@ SPECTACULAR_SETTINGS = {
 }
 
 HASHID_FIELD_SALT = os.environ['HASHID_FIELD_SALT']
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080"
-]
