@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  portfolio:
+    container_name: portfolio
+    build: .
+    command: bash -c "python manage.py collectstatic --noinput; gunicorn portfolio.wsgi:application --workers 3 --timeout 180 --bind 0.0.0.0:8080"
+    restart: unless-stopped
+    environment:
+      DJANGO_DEBUG: 'False'
+      DATABASE_PASS: "${DATABASE_PASS}"
+      DATABASE_USER: "${DATABASE_USER}"
+      DATABASE_NAME: "${DATABASE_NAME}"
+      DATABASE_HOST: "${DATABASE_HOST}"
+      HASHID_FIELD_SALT: "${HASHID_FIELD_SALT}"
+      SECRET_KEY: "${SECRET_KEY}"
+      VIRTUAL_HOST: "${VIRTUAL_HOST}"
+      LETSENCRYPT_HOST: "${LETSENCRYPT_HOST}"
+      LETSENCRYPT_EMAIL: "${LETSENCRYPT_EMAIL}"
+    volumes:
+      - .:/home/portfolio
+    ports:
+      - "8081:8080"
+    expose:
+      - "8080"
+    networks:
+      - portfolio_network
+
+networks:
+  portfolio_network:
+    external: true
