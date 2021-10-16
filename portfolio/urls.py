@@ -2,13 +2,14 @@ from django.contrib import admin
 from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
 from rest_framework.routers import SimpleRouter
-from users.views import UserViewSet, EducationViewSet, ExperienceViewSet, SkillViewSet
+from users.views import UserViewSet, EducationViewSet, ExperienceViewSet, SkillViewSet, ProjectViewSet
 
 router = SimpleRouter(trailing_slash=False)
 router.register(r'user', UserViewSet, 'User')
 router.register(r'education', EducationViewSet, 'Education')
 router.register(r'experience', ExperienceViewSet, 'Experience')
 router.register(r'skill', SkillViewSet, 'Skill')
+router.register(r'project', ProjectViewSet, 'Project')
 
 
 urlpatterns = [

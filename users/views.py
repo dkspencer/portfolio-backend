@@ -8,9 +8,9 @@ from rest_framework.parsers import JSONParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import JSONRenderer
 
-from .models import CustomUser, Education, Experience, Skill
+from .models import CustomUser, Education, Experience, Skill, Project
 from .serializers import (EducationSerializer, ExperienceSerializer,
-                          SkillSerializer, UserSerializer)
+                          SkillSerializer, UserSerializer, ProjectSerializer)
 from portfolio.code.utils.exceptions import ExceptionSerializer
 
 
@@ -144,3 +144,36 @@ class SkillViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self) -> HttpResponse:
         return Skill.objects.filter(user=self.request.user.id).order_by('id')
+
+
+@method_decorator(
+    name='list',
+    decorator=extend_schema(
+        operation_id='List Projects',
+        tags=['Project'],
+        responses={'200': OpenAPI(response=ProjectSerializer,
+                                  description='Request successful'),
+                   '401': OpenAPI(response=ExceptionSerializer,
+                                  description='Unauthorized access, invalid '
+                                  'api key provided')}))
+@method_decorator(
+    name='retrieve',
+    decorator=extend_schema(
+        operation_id='Retrieve Projects',
+        tags=['Project'],
+        responses={'200': OpenAPI(response=ProjectSerializer,
+                                  description='Request successful'),
+                   '401': OpenAPI(response=ExceptionSerializer,
+                                  description='Unauthorized access, invalid '
+                                  'api key provided')}))
+class ProjectViewSet(viewsets.ModelViewSet):
+
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    parser_classes = [JSONParser]
+    renderer_classes = [JSONRenderer]
+    serializer_class = ProjectSerializer
+    http_method_names = ['get']
+
+    def get_queryset(self) -> HttpResponse:
+        return Project.objects.all().order_by('id')
