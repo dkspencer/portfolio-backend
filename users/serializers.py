@@ -10,7 +10,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        exclude = ['id']
+        exclude = []
         ref_name = None
 
 
@@ -24,8 +24,6 @@ class ExperienceSerializer(serializers.ModelSerializer):
 
 class SkillSerializer(serializers.ModelSerializer):
 
-    example = ProjectSerializer(help_text='Skill example')
-
     class Meta:
         model = Skill
         exclude = ['user']
@@ -33,8 +31,6 @@ class SkillSerializer(serializers.ModelSerializer):
 
 
 class EducationSerializer(serializers.ModelSerializer):
-
-    example = ProjectSerializer(help_text='Education example')
 
     class Meta:
         model = Education
