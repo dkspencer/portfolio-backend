@@ -63,19 +63,19 @@ class Profile(models.Model):
 
 
 class Project(models.Model):
-    """Relatable project"""
+    """Store project information"""
 
-    description = models.CharField(max_length=100,
-                                   help_text='Description of project')
+    name = models.CharField(max_length=100,
+                            help_text='Name of project')
 
     url = models.URLField(help_text='URL to project')
 
-    summary = models.TextField(help_text='Short summary describing project',
-                               null=True,
-                               blank=True)
+    description = models.TextField(help_text='Short description of project',
+                                   null=True,
+                                   blank=True)
 
     def __str__(self):
-        return self.description
+        return self.name
 
     class Meta:
         verbose_name = "Project"
@@ -97,9 +97,6 @@ class Experience(models.Model):
 
     country = models.CharField(max_length=50,
                                help_text='Country where job resided')
-
-    summary = models.TextField(
-        help_text='Short summary of experience and responsibilities')
 
     start_date = models.DateField(help_text='Approximate start date of job')
 
@@ -129,18 +126,6 @@ class Skill(models.Model):
                                                MaxValueValidator(10.0)],
                                    help_text='Apprximate confidence rating of skill')
 
-    example = models.ForeignKey(Project,
-                                help_text='Related project',
-                                related_name='skill',
-                                on_delete=models.SET_NULL,
-                                null=True,
-                                blank=True)
-
-    icon = models.CharField(max_length=50,
-                            help_text='Font awesome icon',
-                            null=True,
-                            blank=True)
-
     def __str__(self):
         return self.name
 
@@ -157,26 +142,15 @@ class Education(models.Model):
                              related_name='education',
                              on_delete=models.CASCADE)
 
-    degree = models.CharField(max_length=50,
-                              help_text='Name of degree')
+    title = models.CharField(max_length=50,
+                             help_text='Name of education')
 
-    university = models.CharField(max_length=50,
-                                  help_text='Name of university where '
-                                  'student got degree')
+    institute = models.CharField(max_length=50,
+                                 help_text='Name of supplying institute \
+                                     (school, company etc)')
 
     country = models.CharField(max_length=50,
                                help_text='Country where degree was given')
-
-    summary = models.TextField(null=True, blank=True,
-                               help_text='Short summary of experience and '
-                               'skills learned during degree')
-
-    example = models.ForeignKey(Project,
-                                help_text='Related project',
-                                related_name='project',
-                                on_delete=models.SET_NULL,
-                                null=True,
-                                blank=True)
 
     start_date = models.DateField(
         null=True, blank=True, help_text='Approximate start date of degree')
@@ -185,7 +159,7 @@ class Education(models.Model):
         null=True, blank=True, help_text='Approximate end date of degree')
 
     def __str__(self):
-        return self.degree
+        return self.title
 
     class Meta:
         verbose_name = "Education"
@@ -193,7 +167,7 @@ class Education(models.Model):
 
 
 class Link(models.Model):
-    """Relatable link"""
+    """Store user links"""
 
     user = models.ForeignKey(CustomUser,
                              help_text='User links',
@@ -201,7 +175,7 @@ class Link(models.Model):
                              on_delete=models.CASCADE)
 
     name = models.CharField(max_length=100,
-                                   help_text='Link name')
+                            help_text='Link name')
 
     url = models.URLField(help_text='Link')
 

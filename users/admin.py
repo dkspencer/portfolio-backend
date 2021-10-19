@@ -80,17 +80,17 @@ class SkillAdmin(admin.ModelAdmin):
 
 @admin.register(Education)
 class EducationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'degree', 'university',
+    list_display = ('id', 'title', 'institute',
                     'country', 'start_date', 'end_date')
 
-    list_filter = ['degree', 'university']
+    list_filter = ['title', 'institute']
 
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('id', 'description')
+    list_display = ('id', 'name')
 
-    list_filter = ['description']
+    list_filter = ['name']
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
